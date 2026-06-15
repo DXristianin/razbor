@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:2560px;height:1440px;overflow:hidden}
+  body{background:#0c0a08 url('bg.jpg') center/cover no-repeat;font-family:'Manrope',sans-serif;position:relative;color:#f4ece0}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 62% 66% at 50% 50%,rgba(8,6,4,.62),transparent 72%)}
+  /* safe zone ~1546x423 centered */
+  .safe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:1546px;text-align:center;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:18px;font-size:30px;letter-spacing:.26em;
+    text-transform:uppercase;color:#e9b24a;border:1px solid #322b22;padding:14px 34px;border-radius:99px;margin-bottom:40px}
+  .eyebrow .dot{width:14px;height:14px;border-radius:50%;background:#7fd1ae;box-shadow:0 0 18px #7fd1ae}
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:200px;line-height:.94;letter-spacing:-.02em}
+  h1 .vody{position:relative;color:#a89b88}
+  h1 .vody::after{content:"";position:absolute;left:-4%;right:-4%;top:52%;height:12px;background:#e9b24a;
+    border-radius:99px;transform:rotate(-3deg);box-shadow:0 0 22px rgba(233,178,74,.55)}
+  .tag{margin-top:42px;font-family:'Manrope',sans-serif;font-weight:500;font-size:46px;color:#cdbfa8}
+  .tag b{color:#7fd1ae;font-weight:700}
+</style></head>
+<body><div class="safe">
+  <div class="eyebrow"><span class="dot"></span> Нейросети для малого бизнеса</div>
+  <h1>ИИ <span class="vody">без&nbsp;воды</span></h1>
+  <div class="tag">Разборы профессий, инструменты и деньги — <b>честно, без хайпа</b></div>
+</div></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:800px;height:800px;overflow:hidden}
+  body{background:#14110e;display:grid;place-items:center;font-family:'Manrope',sans-serif;position:relative}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 38%,rgba(233,178,74,.22),transparent 58%)}
+  body::after{content:"";position:absolute;inset:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .mk{position:relative;text-align:center;z-index:2}
+  .ii{font-family:'Unbounded',sans-serif;font-weight:800;font-size:340px;line-height:.9;color:#e9b24a;
+    letter-spacing:-.02em;text-shadow:0 18px 60px rgba(233,178,74,.28)}
+  .bar{width:300px;height:8px;background:#7fd1ae;margin:26px auto 22px;border-radius:99px;box-shadow:0 0 24px rgba(127,209,174,.6)}
+  .bv{font-family:'Unbounded',sans-serif;font-weight:600;font-size:62px;letter-spacing:.22em;color:#f4ece0;text-transform:uppercase}
+</style></head>
+<body><div class="mk">
+  <div class="ii">ИИ</div>
+  <div class="bar"></div>
+  <div class="bv">без&nbsp;воды</div>
+</div></body></html>
