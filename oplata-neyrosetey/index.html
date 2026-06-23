@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Разбор №05 — Как оплатить нейросети из России 2026 | Материалы к выпуску</title>
+<meta name="description" content="3 рабочих способа оплатить нейросети (ChatGPT, Claude, Midjourney) из России в 2026: где дешевле, где надёжнее и чего не делать. Материалы к видео.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110e; --bg2:#1c1813; --ink:#f4ece0; --muted:#a89b88;
+    --gold:#e9b24a; --gold-soft:#f4d491; --mint:#7fd1ae; --line:#322b22;
+    --grime:#6b6052;
+    --display:'Unbounded',system-ui,sans-serif; --body:'Manrope',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  a{color:inherit}
+
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(20,17,14,.72);border-bottom:1px solid var(--line)}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:980px;margin:0 auto}
+  .brand{font-family:var(--display);font-weight:800;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase}
+  .brand b{color:var(--gold)}
+  .hd .btn{font-size:.82rem;padding:8px 16px}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem;
+    padding:14px 26px;border-radius:100px;text-decoration:none;transition:transform .2s,box-shadow .2s;border:1px solid transparent}
+  .btn-gold{background:var(--gold);color:#1a1408;box-shadow:0 8px 30px -8px rgba(233,178,74,.5)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(233,178,74,.65)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
+
+  .hero{padding:90px 0 70px;position:relative}
+  .hero::after{content:"";position:absolute;top:-120px;right:-200px;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,178,74,.16),transparent 60%);pointer-events:none}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:7px 16px;border-radius:100px;margin-bottom:28px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,4rem);line-height:1.04;letter-spacing:-.01em;margin-bottom:22px}
+  h1 .strike{color:var(--grime);text-decoration:line-through;text-decoration-color:rgba(233,178,74,.5)}
+  h1 .glow{color:var(--gold);position:relative}
+  .lede{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--muted);max-width:640px;margin-bottom:38px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .micro{font-size:.85rem;color:var(--muted);margin-top:18px}
+
+  .ba{display:flex;align-items:center;gap:18px;margin-top:46px;flex-wrap:wrap}
+  .chip{flex:1;min-width:200px;border:1px solid var(--line);border-radius:18px;padding:22px 24px;background:var(--bg2)}
+  .chip.before{filter:saturate(.5)}
+  .chip .lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .chip .big{font-family:var(--display);font-weight:600;font-size:1.5rem}
+  .chip.before .big{color:var(--grime)}
+  .chip.after{border-color:rgba(233,178,74,.4);box-shadow:0 0 0 1px rgba(233,178,74,.1) inset}
+  .chip.after .big{color:var(--gold)}
+  .arrow{font-family:var(--display);color:var(--gold);font-size:1.6rem;flex:0 0 auto}
+
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  .sec-label{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.12;margin-bottom:28px}
+
+  .take{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .take div{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg2);font-weight:500}
+  .take div b{color:var(--gold-soft)}
+
+  .step{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:24px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:0}
+  .step .num{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--gold);
+    width:54px;height:54px;border:1px solid var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center}
+  .step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:6px}
+  .step .tc{font-size:.74rem;color:var(--mint);letter-spacing:.05em;margin-bottom:8px}
+  .step p{color:var(--muted)}
+  .step p .screen{color:var(--gold-soft);font-weight:600}
+
+  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+  .pkg{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg2)}
+  .pkg.hl{border-color:var(--gold);background:linear-gradient(180deg,rgba(233,178,74,.07),transparent)}
+  .pkg .name{font-family:var(--display);font-weight:600;margin-bottom:6px}
+  .pkg .price{font-size:1.05rem;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .pkg ul{list-style:none;font-size:.9rem;color:var(--muted)}
+  .pkg li{padding:3px 0 3px 16px;position:relative}
+  .pkg li::before{content:"·";position:absolute;left:4px;color:var(--gold)}
+
+  .callout{border:1px solid rgba(127,209,174,.35);background:linear-gradient(180deg,rgba(127,209,174,.06),transparent);
+    border-radius:18px;padding:28px 30px;margin-top:8px}
+  .callout .k{font-family:var(--display);font-weight:600;color:var(--mint);margin-bottom:10px;font-size:1.1rem}
+  .callout p{color:var(--ink)}
+
+  .final{text-align:center;padding:80px 0}
+  .final h2{margin-bottom:18px}
+  .final p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.85rem;text-align:center}
+  .note{font-size:.8rem;color:var(--grime);background:rgba(255,255,255,.02);border:1px dashed var(--line);
+    border-radius:10px;padding:10px 14px;margin-top:16px}
+
+  .rv{opacity:0;transform:translateY(22px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+
+  @media(max-width:680px){
+    .take,.pkgs{grid-template-columns:1fr}
+    .ba{flex-direction:column}.arrow{transform:rotate(90deg)}
+    .step{grid-template-columns:1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <div class="brand">ИИ <b>без воды</b></div>
+    <a href="#video" class="btn btn-gold">▶ Смотреть выпуск</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:0">
+    <div class="eyebrow rv d1"><span class="dot"></span> Выпуск №05 · Оплата ИИ из России</div>
+    <h1 class="rv d2"><span class="strike">«Оплата недоступна<br>в вашем регионе»</span> →<br><span class="glow">нейросети работают</span></h1>
+    <p class="lede rv d3">3 рабочих способа оплатить ChatGPT, Claude и Midjourney из России в 2026 — где дешевле, где надёжнее и чего не делать, чтобы не нарваться на бан и развод. Без воды, по шагам.</p>
+    <div class="cta-row rv d4">
+      <a href="#video" class="btn btn-gold">▶ Смотреть видео</a>
+      <a href="#sposoby" class="btn btn-ghost">Сразу к способам</a>
+    </div>
+    <p class="micro rv d4">Подойдёт всем, кому ИИ нужен для дела: предприниматель, фрилансер, новичок.</p>
+
+    <div class="ba rv d5">
+      <div class="chip before">
+        <div class="lbl">Было</div>
+        <div class="big">«регион не поддерживается»</div>
+        <div style="color:var(--muted);font-size:.9rem;margin-top:6px">карта РФ не проходит, Apple/Google Pay не работают</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip after">
+        <div class="lbl">Стало</div>
+        <div class="big">оплачено, работает</div>
+        <div style="color:var(--muted);font-size:.9rem;margin-top:6px">свой аккаунт ChatGPT/Claude или рубли без VPN</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <div class="sec-label">Выпуск</div>
+    <h2>Смотри гайд целиком</h2>
+    <a href="https://www.youtube.com/@iibezvody" target="_blank" rel="noopener" class="btn btn-gold">▶ Смотреть на канале «ИИ без воды»</a>
+    <div class="note">Пока ведёт на канал — заменю на прямую ссылку ролика, когда выложишь.</div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section>
+    <div class="sec-label">Что заберёшь</div>
+    <h2>Что узнаешь за выпуск</h2>
+    <div class="take">
+      <div><b>3 рабочих способа</b> оплатить нейросети из РФ в 2026.</div>
+      <div><b>Где дешевле</b> и где переплачиваешь зря.</div>
+      <div>Нюанс с <b>Claude и VPN</b>, без которого будет ошибка.</div>
+      <div><b>Чего НЕ делать</b>, чтобы не потерять аккаунт и деньги.</div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL -->
+  <section id="sposoby">
+    <div class="sec-label">По шагам</div>
+    <h2>Как оплатить — 3 способа + нюанс</h2>
+
+    <div class="step">
+      <div class="num">1</div>
+      <div>
+        <div class="tc">⏱ 01:10</div>
+        <h3>Виртуальная карта + СБП</h3>
+        <p>Карта с иностранным BIN, пополняешь по СБП из любого банка. С US-гео подписка выходит ровно $20 без VAT. Свой чистый аккаунт с историей чатов. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <div class="tc">⏱ 03:00</div>
+        <h3>Российский агрегатор (рубли, без VPN)</h3>
+        <p>Study AI / MashaGPT — GPT, Claude, Midjourney в одном окне, оплата рублями от ~1490₽/мес, часто дешевле прямой подписки. Для новичков без возни. Минус — не родной аккаунт. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div>
+        <div class="tc">⏱ 04:40</div>
+        <h3>Своя / знакомого зарубежная карта</h3>
+        <p>Самый надёжный вариант для постоянной работы — прямая подписка без посредников.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <div>
+        <div class="tc">⏱ 05:40</div>
+        <h3>Нюанс: Claude и VPN</h3>
+        <p>Claude проверяет IP на каждом запросе — без VPN ошибка «недоступно». Рабочие: Mullvad, Proton, AdGuard. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section>
+    <div class="sec-label">Что выбрать</div>
+    <h2>Сравнение способов</h2>
+    <div class="pkgs">
+      <div class="pkg">
+        <div class="name">Вирткарта + СБП</div>
+        <div class="price">≈ $20/мес</div>
+        <ul><li>свой чистый аккаунт</li><li>надёжно для работы</li><li>чуть сложнее настройка</li></ul>
+      </div>
+      <div class="pkg hl">
+        <div class="name">Агрегатор (₽)</div>
+        <div class="price">от ~1490 ₽/мес</div>
+        <ul><li>без карт и VPN</li><li>несколько ИИ в пакете</li><li>проще всего для старта</li></ul>
+      </div>
+      <div class="pkg">
+        <div class="name">Зарубежная карта</div>
+        <div class="price">номинал подписки</div>
+        <ul><li>самый надёжный</li><li>прямой аккаунт</li><li>нужна сама карта</li></ul>
+      </div>
+    </div>
+    <p style="color:var(--muted)">Новичку — агрегатор в рублях. Нужен «родной» ChatGPT/Claude — вирткарта или зарубежная карта.</p>
+  </section>
+
+  <!-- HONESTY -->
+  <section>
+    <div class="sec-label">Честно</div>
+    <h2>Чего НЕ делать</h2>
+    <div class="callout">
+      <div class="k">Без воды и «бесплатных схем».</div>
+      <p>Не покупай «готовые оплаченные аккаунты» с Авито — это чужой аккаунт, забанят и заберут вместе с твоими чатами. Крипто-карты сейчас всё хуже: Stripe их распознаёт и блокит. Проверяй комиссии посредников и не давай доступы кому попало. И честно про «бесплатно»: сами нейросети стоят денег, бесплатно — только пробные лимиты. «Бесплатных схем» на Plus не существует — не ведись.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <h2>Полный гайд со ссылками — в Telegram</h2>
+    <p>Все актуальные сервисы, цены и пошаговые инструкции собрал в канале. Забирай бесплатно. А если хочешь, чтобы я разобрал, как ИИ применить в твоём деле, — расскажу там же.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="https://t.me/dxristianin_ai" target="_blank" rel="noopener" class="btn btn-gold">Забрать гайд в Telegram</a>
+      <a href="https://www.youtube.com/@iibezvody" target="_blank" rel="noopener" class="btn btn-ghost">▶ Канал «ИИ без воды»</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  ИИ без воды · Выпуск №05 — Оплата нейросетей из России 2026 · Материалы к видео
+</footer>
+
+</body>
+</html>
