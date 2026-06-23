@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Разбор профессии №04 — Сайт за 20 минут с ИИ | Материалы к выпуску</title>
+<meta name="description" content="Как с помощью Claude за 20 минут собрать бизнесу сайт-визитку — без единой строчки кода и бесплатно. Промпты, протокол и материалы к видео.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110e; --bg2:#1c1813; --ink:#f4ece0; --muted:#a89b88;
+    --gold:#e9b24a; --gold-soft:#f4d491; --mint:#7fd1ae; --line:#322b22;
+    --grime:#6b6052;
+    --display:'Unbounded',system-ui,sans-serif; --body:'Manrope',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  a{color:inherit}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(20,17,14,.72);border-bottom:1px solid var(--line)}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:980px;margin:0 auto}
+  .brand{font-family:var(--display);font-weight:800;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase}
+  .brand b{color:var(--gold)}
+  .hd .btn{font-size:.82rem;padding:8px 16px}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem;
+    padding:14px 26px;border-radius:100px;text-decoration:none;transition:transform .2s,box-shadow .2s;border:1px solid transparent}
+  .btn-gold{background:var(--gold);color:#1a1408;box-shadow:0 8px 30px -8px rgba(233,178,74,.5)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(233,178,74,.65)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
+
+  /* hero */
+  .hero{padding:90px 0 70px;position:relative}
+  .hero::after{content:"";position:absolute;top:-120px;right:-200px;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,178,74,.16),transparent 60%);pointer-events:none}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:7px 16px;border-radius:100px;margin-bottom:28px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,4rem);line-height:1.04;letter-spacing:-.01em;margin-bottom:22px}
+  h1 .strike{color:var(--grime);text-decoration:line-through;text-decoration-color:rgba(233,178,74,.5)}
+  h1 .glow{color:var(--gold);position:relative}
+  .lede{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--muted);max-width:620px;margin-bottom:38px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .micro{font-size:.85rem;color:var(--muted);margin-top:18px}
+
+  /* before-after chips */
+  .ba{display:flex;align-items:center;gap:18px;margin-top:46px;flex-wrap:wrap}
+  .chip{flex:1;min-width:200px;border:1px solid var(--line);border-radius:18px;padding:22px 24px;background:var(--bg2)}
+  .chip.before{filter:saturate(.5)}
+  .chip .lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .chip .big{font-family:var(--display);font-weight:600;font-size:1.5rem}
+  .chip.before .big{color:var(--grime)}
+  .chip.after{border-color:rgba(233,178,74,.4);box-shadow:0 0 0 1px rgba(233,178,74,.1) inset}
+  .chip.after .big{color:var(--gold)}
+  .arrow{font-family:var(--display);color:var(--gold);font-size:1.6rem;flex:0 0 auto}
+
+  .hero-img{margin-top:40px;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(233,178,74,.08)}
+  .hero-img img{display:block;width:100%;height:auto}
+
+  /* sections */
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  .sec-label{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.12;margin-bottom:28px}
+
+  .take{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .take div{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg2);font-weight:500}
+  .take div b{color:var(--gold-soft)}
+
+  /* protocol steps */
+  .step{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:24px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:0}
+  .step .num{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--gold);
+    width:54px;height:54px;border:1px solid var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center}
+  .step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:6px}
+  .step .tc{font-size:.74rem;color:var(--mint);letter-spacing:.05em;margin-bottom:8px}
+  .step p{color:var(--muted)}
+  .step p .screen{color:var(--gold-soft);font-weight:600}
+
+  /* prompts */
+  .prompt{background:var(--bg2);border:1px solid var(--line);border-radius:16px;margin-bottom:18px;overflow:hidden}
+  .prompt .top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .prompt .top span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .copy{background:none;border:1px solid var(--line);color:var(--ink);font-family:var(--body);font-size:.78rem;
+    font-weight:700;padding:7px 14px;border-radius:100px;cursor:pointer;transition:.2s}
+  .copy:hover{border-color:var(--gold);color:var(--gold)}
+  .copy.ok{background:var(--mint);color:#0e1a14;border-color:var(--mint)}
+  .prompt pre{padding:18px;font-family:var(--body);font-size:.95rem;white-space:pre-wrap;color:var(--ink)}
+
+  /* packages */
+  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+  .pkg{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg2)}
+  .pkg.hl{border-color:var(--gold);background:linear-gradient(180deg,rgba(233,178,74,.07),transparent)}
+  .pkg .name{font-family:var(--display);font-weight:600;margin-bottom:6px}
+  .pkg .price{font-size:1.05rem;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .pkg ul{list-style:none;font-size:.9rem;color:var(--muted)}
+  .pkg li{padding:3px 0 3px 16px;position:relative}
+  .pkg li::before{content:"·";position:absolute;left:4px;color:var(--gold)}
+
+  /* honesty callout */
+  .callout{border:1px solid rgba(127,209,174,.35);background:linear-gradient(180deg,rgba(127,209,174,.06),transparent);
+    border-radius:18px;padding:28px 30px;margin-top:8px}
+  .callout .k{font-family:var(--display);font-weight:600;color:var(--mint);margin-bottom:10px;font-size:1.1rem}
+  .callout p{color:var(--ink)}
+
+  /* materials / cta */
+  .final{text-align:center;padding:80px 0}
+  .final h2{margin-bottom:18px}
+  .final p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.85rem;text-align:center}
+  .note{font-size:.8rem;color:var(--grime);background:rgba(255,255,255,.02);border:1px dashed var(--line);
+    border-radius:10px;padding:10px 14px;margin-top:16px}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+
+  @media(max-width:680px){
+    .take,.pkgs{grid-template-columns:1fr}
+    .ba{flex-direction:column}.arrow{transform:rotate(90deg)}
+    .step{grid-template-columns:1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <div class="brand">Разбор <b>профессии</b></div>
+    <a href="#video" class="btn btn-gold">▶ Смотреть выпуск</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:0">
+    <div class="eyebrow rv d1"><span class="dot"></span> Выпуск №04 · Сайт × ИИ</div>
+    <h1 class="rv d2">Из <span class="strike">заказов «в&nbsp;директе»</span> в&nbsp;<span class="glow">сайт-визитку</span> за&nbsp;20&nbsp;минут</h1>
+    <p class="lede rv d3">Собрал бизнесу настоящий сайт с одним ИИ — без единой строчки кода и бесплатно. Это вайбкодинг: описываешь словами — Claude пишет код. Здесь — все промпты, протокол и материалы из видео.</p>
+    <div class="cta-row rv d4">
+      <a href="#video" class="btn btn-gold">▶ Смотреть видео</a>
+      <a href="#prompts" class="btn btn-ghost">Забрать промпты</a>
+    </div>
+    <p class="micro rv d4">Подойдёт любому: кондитер, мастер, репетитор, барбер, автосервис — меняешь нишу в промпте.</p>
+
+    <div class="ba rv d5">
+      <div class="chip before">
+        <div class="lbl">Было</div>
+        <div class="big">заказы в директе</div>
+        <div style="color:var(--muted);font-size:.9rem;margin-top:6px">выглядит как хобби, цена «по-дружески», негде показать</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip after">
+        <div class="lbl">Стало</div>
+        <div class="big">сайт за 20 мин</div>
+        <div style="color:var(--muted);font-size:.9rem;margin-top:6px">портфолио, цены, форма заказа — выглядит как бренд</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <div class="sec-label">Выпуск</div>
+    <h2>Смотри разбор целиком</h2>
+    <a href="https://www.youtube.com/@iibezvody" target="_blank" rel="noopener" class="btn btn-gold">▶ Смотреть на канале «ИИ без воды»</a>
+    <div class="note">Пока ведёт на канал — заменю на прямую ссылку ролика, когда выложишь.</div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section>
+    <div class="sec-label">Что заберёшь</div>
+    <h2>Чему научишься за выпуск</h2>
+    <div class="take">
+      <div>Писать <b>промт под сайт</b>: роль фронтендера + контекст + какие блоки и стиль — вместо «сделай сайт».</div>
+      <div><b>Вайбкодить</b> страницу: из описания словами — готовый сайт, без кода руками.</div>
+      <div>Править сайт <b>голосом и текстом</b>: кнопки, блоки, цвета — итерациями.</div>
+      <div>Опубликовать <b>бесплатно</b> за 5 минут и получить живую ссылку в шапку профиля.</div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL -->
+  <section>
+    <div class="sec-label">Протокол</div>
+    <h2>Как собрали сайт — по шагам</h2>
+
+    <div class="step">
+      <div class="num">1</div>
+      <div>
+        <div class="tc">⏱ 01:20</div>
+        <h3>Правильный промт под сайт</h3>
+        <p>Ошибка — «сделай сайт» → мусор. Даём роль фронтендера + контекст (кто, что продаёт) + узкую задачу: блоки, стиль, один файл, адаптив. <span class="screen">[экран: Claude]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <div class="tc">⏱ 02:50</div>
+        <h3>Генерация (вайбкодинг)</h3>
+        <p>Из промпта появляется готовая страница: hero, портфолио, цены, форма заказа. Описываешь словами — код пишет ИИ. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div>
+        <div class="tc">⏱ 04:10</div>
+        <h3>Правки без кода</h3>
+        <p>«Кнопку заказа крупнее», «добавь блок доставки», «палитру теплее» — меняешь словами, ИИ переписывает. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <div>
+        <div class="tc">⏱ 05:10</div>
+        <h3>Контент: оффер, цены, отзывы</h3>
+        <p>ИИ пишет оффер, 3 пакета с ценами, отзывы и текст кнопки заказа. Тексты правим под себя. <span class="screen">[экран]</span></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">5</div>
+      <div>
+        <div class="tc">⏱ 06:10</div>
+        <h3>Публикация бесплатно</h3>
+        <p>GitHub Pages или Netlify drop за 5 минут → живая ссылка → в шапку профиля, Авито, визитку. <span class="screen">[экран: деплой]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPTS -->
+  <section id="prompts">
+    <div class="sec-label">Промпты из видео</div>
+    <h2>Копируй и подставляй свою нишу</h2>
+
+    <div class="prompt">
+      <div class="top"><span>Промт 1 · Сайт (вайбкодинг)</span><button class="copy">Копировать</button></div>
+      <pre>Ты — фронтенд-разработчик. Сделай красивый одностраничный сайт-визитку для частного кондитера (торты и десерты на заказ).
+Блоки: hero с оффером, портфолио (сетка фото), пакеты и цены, отзывы, форма заказа с кнопкой в WhatsApp.
+Стиль: тёплый, аппетитный, премиальный. Адаптив под телефон. Верни одним HTML-файлом со встроенным CSS, без воды.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="top"><span>Промт 2 · Правки</span><button class="copy">Копировать</button></div>
+      <pre>Внеси правки в этот сайт, ничего не ломая: [впиши своё — кнопку заказа крупнее / добавь блок «доставка по городу» / смени палитру на тёплую бежево-золотую / добавь блок FAQ].
+Верни цельный готовый HTML-файл.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="top"><span>Промт 3 · Тексты и оффер</span><button class="copy">Копировать</button></div>
+      <pre>Ты — маркетолог. Для частного кондитера напиши:
+1) оффер для hero (одна цепляющая фраза),
+2) 3 пакета с ценами (от мини-набора до премиум-торта),
+3) 5 коротких живых отзывов,
+4) текст кнопки заказа.
+По-человечески, без штампов и без воды.</pre>
+    </div>
+    <div class="note">Меняешь «кондитера» на свою профессию — промпты работают так же.</div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section>
+    <div class="sec-label">Было → Стало</div>
+    <h2>Пример тарифной сетки на сайте</h2>
+    <div class="pkgs">
+      <div class="pkg">
+        <div class="name">Мини</div>
+        <div class="price">от 1500 ₽</div>
+        <ul><li>набор капкейков / макаронс</li><li>к чаю и небольшим праздникам</li></ul>
+      </div>
+      <div class="pkg hl">
+        <div class="name">Торт «Стандарт»</div>
+        <div class="price">от 3500 ₽</div>
+        <ul><li>торт на день рождения</li><li>свой дизайн и вкус</li><li>фото-согласование</li></ul>
+      </div>
+      <div class="pkg">
+        <div class="name">Премиум</div>
+        <div class="price">от 8000 ₽</div>
+        <ul><li>свадебный / многоярусный</li><li>индивидуальный декор</li><li>доставка</li></ul>
+      </div>
+    </div>
+    <p style="color:var(--muted)">Сайт сразу показывает цены и берёт предоплату — клиент перестаёт торговаться, а ты выглядишь как бренд, а не «по-дружески».</p>
+  </section>
+
+  <!-- HONESTY -->
+  <section>
+    <div class="sec-label">Честно</div>
+    <h2>Чего ИИ НЕ сделает</h2>
+    <div class="callout">
+      <div class="k">ИИ не испечёт торт и сам клиентов не приведёт.</div>
+      <p>Сайт — это витрина, а не волшебная кнопка «бабло». Проверяй то, что он накодил: ссылки, форму заказа, цены — он может ошибиться или выдумать. И про «бесплатно» честно: сам сайт и хостинг — да, бесплатно (GitHub Pages или Netlify). Домен вида .ru — рублей 200 в год, и то по желанию. Это рычаг для того, кто уже делает своё дело руками.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <h2>Какую профессию разобрать следующей?</h2>
+    <p>Напиши свою профессию в комментариях под видео — соберу для неё сайт в следующем выпуске. А все промпты и материалы забирай в канале.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="https://t.me/dxristianin_ai" target="_blank" rel="noopener" class="btn btn-gold">Забрать в Telegram</a>
+      <a href="https://www.youtube.com/@iibezvody" target="_blank" rel="noopener" class="btn btn-ghost">▶ Канал «ИИ без воды»</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  Разбор профессии · Выпуск №04 — Сайт за 20 минут с ИИ · Материалы к видео
+</footer>
+
+<script>
+  document.querySelectorAll('.copy').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const code=b.closest('.prompt').querySelector('pre').innerText;
+      navigator.clipboard.writeText(code).then(()=>{
+        const t=b.textContent;b.textContent='Скопировано ✓';b.classList.add('ok');
+        setTimeout(()=>{b.textContent=t;b.classList.remove('ok')},1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
